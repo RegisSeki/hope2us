@@ -1,0 +1,23 @@
+language: ruby
+rvm:
+  - 2.3.1
+before_script:
+  - bundle exec rails db:create
+  - bundle exec rails db:migrate
+script:
+  - bundle exec rubocop
+  - bundle exec rspec spec
+notifications:
+  email:
+    recipients:
+      - alan.batista@campuscode.com.br
+      - dbs.noronha@gmail.com
+      - regis.seki@gmail.com
+      - erisonsuzuki@gmail.com
+    on_success: always
+    on_failure: always
+deploy:
+  provider: heroku
+  api_key: fa051497-0736-494f-a7e3-edc8c95b1b87
+  app: hope2us
+  run: "rails db:migrate"
