@@ -1,0 +1,8 @@
+<%= form_for donations_path do |f| %>
+  <% @items.each do |item| %>
+    <%= f.simple_fields_for :item do |items_form| %>
+      <%= items_form.input :amount, label: item.name %>
+    <% end %>
+  <% end %>
+  <%= f.submit 'Doar!' %>
+<% end %>
