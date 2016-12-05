@@ -1,0 +1,20 @@
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - Rakefile
+    - config/**/*
+    - db/**/*
+    - Gemfile*
+  TargetRubyVersion: 2.3
