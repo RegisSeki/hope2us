@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :item do
-    name "MyString"
-    description "MyText"
+    sequence(:name) { |n| "item #{n}" }
+    sequence(:description) { |n| "descrição do item #{n}" }
     amount 1
-    reserved 1
-    confirmed 1
+    reserved 0
+    confirmed 0
   end
 end
