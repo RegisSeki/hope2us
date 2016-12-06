@@ -1,0 +1,6 @@
+<h1>Olá <%= current_user.name %></h1>
+
+<p>Itens: </p>
+<% @donations.each do |donation| %>
+  <p><%= donation.item.name %></p>
+<% end %>

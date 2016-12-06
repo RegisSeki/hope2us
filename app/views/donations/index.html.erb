@@ -1,13 +1,17 @@
-<%= form_for donations_path do |f| %>
+<%= form_tag donations_path do %>
   <% @items.each do |item| %>
-    <%= f.simple_fields_for :item do |items_form| %>
-      <%= items_form.input :amount, collection: item.available_amounts, label: item.name %>
-    <% end %>
-    <%= f.simple_fields_for :user do |items_form| %>
-      <%= items_form.input :name, label: 'Nome' %>
-      <%= items_form.input :email, label: 'Email' %>
-      <%= items_form.input :phone, label: 'Telefone' %>
-     <% end %>
+    <%= label_tag "items[#{item.id}]", item.name %>
+    <%= select_tag "items[#{item.id}]", options_for_select(item.available_amounts) %>
   <% end %>
-  <%= f.submit 'Doar!' %>
+
+  <%= label_tag 'user[name]', 'Nome' %>
+  <%= text_field_tag 'user[name]' %>
+
+  <%= label_tag 'user[email]', 'Email' %>
+  <%= text_field_tag 'user[email]' %>
+
+  <%= label_tag 'user[phone]', 'Telefone' %>
+  <%= text_field_tag 'user[phone]' %>
+
+  <%= submit_tag 'Doar!' %>
 <% end %>
