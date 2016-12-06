@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161205235755) do
 
   create_table "donations", force: :cascade do |t|
@@ -22,19 +21,6 @@ ActiveRecord::Schema.define(version: 20161205235755) do
     t.index ["item_id"], name: "index_donations_on_item_id"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
-
-  create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "amount",      default: 0
-    t.integer  "reserved",    default: 0
-    t.integer  "confirmed",   default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-=======
-ActiveRecord::Schema.define(version: 20161205231056) do
->>>>>>> 5c94b7d15535c207a2424630ed78e352e3519727
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
