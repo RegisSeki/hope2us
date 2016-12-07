@@ -3,7 +3,7 @@ class DonationsController < ApplicationController
 
   def index
     @items = Item.all
-  end
+p  end
 
   def create
     sign_in(:user, @service[:user])
