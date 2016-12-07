@@ -42,12 +42,11 @@ describe DonationBuilderService do
         }
       }
     end
-    let!(:error) { "Todos #{item_one.name} foram doados" }
 
     subject { described_class.new(params).builder }
 
     it 'should return error for item unavailable' do
-      expect(subject[:errors]).to include(error)
+      expect(subject[:errors]).to include("Todos #{item_one.name} foram doados")
     end
   end
 
