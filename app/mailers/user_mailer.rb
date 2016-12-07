@@ -1,9 +1,10 @@
 class UserMailer < ApplicationMailer
-  default from: 'contato.hope2us@gmail.com'
+ 	default from: 'notifications@example.com'
 
-  def welcome_email(user)
-    @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'A Hope2us agradece pela doação :)')
-  end
+ 	def donation_mailer(user, donations)
+ 		@donations = donations
+ 		@user = user
+ 		@url = 'Definir URL'
+ 		mail(to: @user.email, subject: 'Obrigado! Hope2us')
+ 	end
 end
