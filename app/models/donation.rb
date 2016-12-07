@@ -7,7 +7,7 @@ class Donation < ApplicationRecord
 
   def limit_amount
     errors.add(
-      :item, "Todos os(as) #{item.name} foram doados"
+      :item, "Todos #{item.name} foram doados"
     ) if item.amount.zero?
   end
 end

@@ -42,10 +42,12 @@ describe DonationBuilderService do
         }
       }
     end
+    let!(:error) { "Todos #{item_one.name} foram doados" }
+
     subject { described_class.new(params).builder }
 
     it 'should return error for item unavailable' do
-      expect(subject[:errors].size).to eq(1)
+      expect(subject[:errors]).to include(error)
     end
   end
 
@@ -64,7 +66,11 @@ describe DonationBuilderService do
     subject { described_class.new(params).builder }
 
     it 'should return message for item with amount less than required' do
-      expect(subject[:warnings].size).to eq(1)
+      expect(subject[:warnings]).to include({
+        item: item_one.name,
+        amount: 5,
+        valid_amount: 3
+      })
     end
   end
 end
