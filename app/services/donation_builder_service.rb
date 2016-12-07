@@ -2,14 +2,15 @@ class DonationBuilderService
   def initialize(params)
     @params = params
     @errors = []
+    @donations = []
   end
 
   def builder
     @user = fetch_user
-
+    fetch_donations
     {
       user: @user,
-      donations: fetch_donations,
+      donations: @donations,
       errors: @errors
     }
   end
@@ -38,27 +39,31 @@ class DonationBuilderService
   end
 
   def fetch_donations
-    results = []
     @params[:items].each do |item, amount|
-      donation = create_donation(item.to_i, amount.to_i)
+      item = Item.find(item.to_i)
 
-      if donation.valid?
-        results << donation
-      else
-        @errors << donation.errors[:item].first
-      end
+      create_donation(item, amount.to_i)
     end
-
-    results
   end
 
-  def create_donation(item_id, amount)
-    item = Item.find(item_id)
+  def create_donation(item, amount)
+    donation = Donation.create(user: @user, item: item, amount: amount)
 
-    Donation.create(
-      user: @user,
-      item: item,
-      amount: amount
+    if donation.valid?
+      update_item(item, amount)
+
+      @donations << donation
+    else
+      @errors << donation.errors[:item].first
+    end
+  end
+
+  def update_item(item, amount)
+    valid_amount = [amount, item.amount].min
+
+    item.update(
+      amount: item.amount - valid_amount,
+      reserved: item.reserved + valid_amount
     )
   end
 end
