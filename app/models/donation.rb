@@ -3,7 +3,7 @@ class Donation < ApplicationRecord
   belongs_to :item
 
   validates :user, :item, presence: true
-  validate :limit_amount
+  validate :limit_amount, on: :create
 
   def limit_amount
     errors.add(

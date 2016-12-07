@@ -3,6 +3,7 @@ class DonationBuilderService
     @params = params
     @errors = []
     @donations = []
+    @warnings = []
   end
 
   def builder
@@ -11,7 +12,8 @@ class DonationBuilderService
     {
       user: @user,
       donations: @donations,
-      errors: @errors
+      errors: @errors,
+      warnings: @warnings
     }
   end
 
@@ -47,23 +49,45 @@ class DonationBuilderService
   end
 
   def create_donation(item, amount)
-    donation = Donation.create(user: @user, item: item, amount: amount)
+    donation = Donation.new(user: @user, item: item, amount: amount)
 
     if donation.valid?
-      update_item(item, amount)
-
-      @donations << donation
+      validate_donation(donation, item)
     else
       @errors << donation.errors[:item].first
     end
   end
 
-  def update_item(item, amount)
-    valid_amount = [amount, item.amount].min
+  def validate_donation(donation, item)
+    valid_amount = [donation.amount, item.amount].min
 
+    if donation.amount > item.amount
+      warning_message(donation, item, valid_amount)
+
+      update_item(item, valid_amount)
+    else
+      @donations << donation.save
+
+      update_item(item, donation.amount)
+    end
+  end
+
+  def warning_message(donation, item, valid_amount)
+    @warnings << {
+      item: item.name,
+      amount: donation.amount,
+      valid_amount: valid_amount
+    }
+
+    donation.amount = valid_amount
+
+    @donations << donation.save
+  end
+
+  def update_item(item, amount)
     item.update(
-      amount: item.amount - valid_amount,
-      reserved: item.reserved + valid_amount
+      amount: item.amount - amount,
+      reserved: item.reserved + amount
     )
   end
 end
