@@ -6,6 +6,8 @@ class Donation < ApplicationRecord
   validate :limit_amount
 
   def limit_amount
-  	"Todos os(as) #{item.name} foram doados" if item.amount == 0
+    errors.add(
+      :item, "Todos os(as) #{item.name} foram doados"
+    ) if item.amount.zero?
   end
 end
