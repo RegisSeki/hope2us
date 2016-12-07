@@ -4,3 +4,19 @@
 <% @donations.each do |donation| %>
   <p><%= donation.item.name %></p>
 <% end %>
+
+<% if flash[:errors] %>
+  <div class="errors">
+    <% flash[:errors].each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<% if flash[:warnings] %>
+  <div class="warnings">
+    <% flash[:warnings].each do |warning| %>
+      <p><%= warning %></p>
+    <% end %>
+  </div>
+<% end %>

@@ -62,14 +62,12 @@ describe DonationBuilderService do
         }
       }
     end
+    let!(:message) { "Apenas 3/5 #{item_one.name} disponíveis" }
+
     subject { described_class.new(params).builder }
 
     it 'should return message for item with amount less than required' do
-      expect(subject[:warnings]).to include({
-        item: item_one.name,
-        amount: 5,
-        valid_amount: 3
-      })
+      expect(subject[:warnings]).to include(message)
     end
   end
 end

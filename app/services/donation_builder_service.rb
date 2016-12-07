@@ -9,6 +9,7 @@ class DonationBuilderService
   def builder
     @user = fetch_user
     fetch_donations
+
     {
       user: @user,
       donations: @donations,
@@ -63,24 +64,20 @@ class DonationBuilderService
 
     if donation.amount > item.amount
       warning_message(donation, item, valid_amount)
-
       update_item(item, valid_amount)
     else
       @donations << donation.save
-
       update_item(item, donation.amount)
     end
   end
 
   def warning_message(donation, item, valid_amount)
-    @warnings << {
-      item: item.name,
-      amount: donation.amount,
-      valid_amount: valid_amount
-    }
+    message = "Apenas #{valid_amount}/#{donation.amount} "
+    message += "#{item.name} disponíveis"
 
     donation.amount = valid_amount
 
+    @warnings << message
     @donations << donation.save
   end
 

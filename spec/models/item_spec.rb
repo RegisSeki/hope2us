@@ -11,8 +11,8 @@ RSpec.describe Item, type: :model do
 
   describe 'available items' do
     it 'should return list of available item' do
-      item_one = create(:item, amount: 0)
-      item_two = create(:item, amount: 5)
+      create(:item, amount: 0)
+      create(:item, amount: 5)
 
       expect(Item.available.size).to eq(1)
     end

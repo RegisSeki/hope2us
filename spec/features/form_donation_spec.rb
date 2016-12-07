@@ -22,7 +22,6 @@ feature 'form donation' do
     items.each do |item|
       select('1', from: item.name)
     end
-
     fill_in 'Nome', with: user.name
     fill_in 'Email', with: user.email
     fill_in 'Telefone', with: user.phone
@@ -34,5 +33,52 @@ feature 'form donation' do
     items.each do |item|
       expect(page).to have_content item.name
     end
+  end
+
+  scenario 'donation with unavailable item' do
+    item_one = create(:item, amount: 2)
+    item_two = create(:item, amount: 2)
+    user = build(:user)
+
+    visit donations_path
+
+    select('1', from: item_one.name)
+    select('1', from: item_two.name)
+    fill_in 'Nome', with: user.name
+    fill_in 'Email', with: user.email
+    fill_in 'Telefone', with: user.phone
+
+    item_two.update(amount: 0)
+
+    click_on 'Doar!'
+
+    expect(page).to have_content user.name
+    expect(page).to have_content item_one.name
+    expect(page).to have_content "Todos #{item_two.name} foram doados"
+  end
+
+  scenario 'item amount with less then required' do
+    item_one = create(:item, amount: 5)
+    item_two = create(:item, amount: 2)
+    user = build(:user)
+
+    visit donations_path
+
+    select('5', from: item_one.name)
+    select('1', from: item_two.name)
+    fill_in 'Nome', with: user.name
+    fill_in 'Email', with: user.email
+    fill_in 'Telefone', with: user.phone
+
+    item_one.update(amount: 2)
+
+    click_on 'Doar!'
+
+    expect(page).to have_content user.name
+    expect(page).to have_content item_one.name
+    expect(page).to have_content item_two.name
+    expect(page).to have_content(
+      "Apenas 2/5 #{item_one.name} disponíveis"
+    )
   end
 end
