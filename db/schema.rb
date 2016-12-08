@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205235755) do
+ActiveRecord::Schema.define(version: 20161208154103) do
 
   create_table "donations", force: :cascade do |t|
     t.integer  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "user_id"
     t.integer  "item_id"
+    t.string   "image"
+    t.date     "date_of_delivery"
     t.index ["item_id"], name: "index_donations_on_item_id"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end

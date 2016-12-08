@@ -3,4 +3,7 @@
 <p>Itens: </p>
 <% @donations.each do |donation| %>
   <p><%= donation.item.name %></p>
+  <p><%= link_to 'Enviar comprovante',
+  	receipt_donation_path(donation.id) %>
+	</p>
 <% end %>

@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     collection do
       get 'confirmation', to: 'confirmation#index'
     end
+    member do
+    	get 'receipt', to: 'donation_receipts#edit'
+      put 'receipt', to: 'donation_receipts#update'
+    end
   end
 end

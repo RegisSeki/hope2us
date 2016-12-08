@@ -1,0 +1,15 @@
+<h1>A hope2us agradece a sua doação.</h1>
+<p>O seu número de doação: <%= @donation.id %></p>
+<p>Item: <%= @donation.item.name %></p>
+<p>Quantidade: <%= @donation.amount %></p>
+<p>Para finalizar a sua doação basta enviar 
+	o seu comprovante de compra, e informar a data de previsão para entrega.
+</p>
+<%= simple_form_for receipt_donation_path(@donation.id),
+	:html => {:multipart => true},
+	method: :put do |f| %>
+	<%= f.input :date_of_delivery,as: :date, order:[:day, :month],
+		label: 'Data de Entrega'%><br>
+	<%= f.file_field :image %><br><br>
+	<%= f.submit 'Confirmar doação!' %><br>
+<% end %>
