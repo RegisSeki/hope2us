@@ -1,14 +1,20 @@
 class DonationBuilderService
   def initialize(params)
     @params = params
+    @errors = []
+    @donations = []
+    @warnings = []
   end
 
   def builder
     @user = fetch_user
+    fetch_donations
 
     {
       user: @user,
-      donations: fetch_donations
+      donations: @donations,
+      errors: @errors,
+      warnings: @warnings
     }
   end
 
@@ -36,15 +42,49 @@ class DonationBuilderService
   end
 
   def fetch_donations
-    donations = []
-    @params[:items].each do |item_id, amount|
-      donations << Donation.create(
-        user_id: @user.id,
-        item_id: item_id,
-        amount: amount.to_i
-      )
-    end
+    @params[:items].each do |item, amount|
+      item = Item.find(item.to_i)
 
-    donations
+      create_donation(item, amount.to_i)
+    end
+  end
+
+  def create_donation(item, amount)
+    donation = Donation.new(user: @user, item: item, amount: amount)
+
+    if donation.valid?
+      validate_donation(donation, item)
+    else
+      @errors << donation.errors[:item].first
+    end
+  end
+
+  def validate_donation(donation, item)
+    valid_amount = [donation.amount, item.amount].min
+
+    if donation.amount > item.amount
+      warning_message(donation, item, valid_amount)
+      update_item(item, valid_amount)
+    else
+      @donations << donation.save
+      update_item(item, donation.amount)
+    end
+  end
+
+  def warning_message(donation, item, valid_amount)
+    message = "Apenas #{valid_amount}/#{donation.amount} "
+    message += "#{item.name} disponíveis"
+
+    donation.amount = valid_amount
+
+    @warnings << message
+    @donations << donation.save
+  end
+
+  def update_item(item, amount)
+    item.update(
+      amount: item.amount - amount,
+      reserved: item.reserved + amount
+    )
   end
 end

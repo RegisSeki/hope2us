@@ -1,7 +1,7 @@
 <%= form_tag donations_path do %>
   <% @items.each do |item| %>
     <%= label_tag "items[#{item.id}]", item.name %>
-    <%= select_tag "items[#{item.id}]", options_for_select(item.available_amounts) %>
+    <%= select_tag "items[#{item.id}]", options_for_select(item.available_amounts), include_blank: true %>
   <% end %>
 
   <%= label_tag 'user[name]', 'Nome' %>
