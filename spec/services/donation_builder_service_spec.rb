@@ -30,6 +30,29 @@ describe DonationBuilderService do
     end
   end
 
+  context 'empty user params' do
+    let!(:item_one) { create(:item, amount: 5) }
+    let!(:item_two) { create(:item, amount: 3) }
+    let!(:params) do
+      {
+        items: {
+          item_one.id => '1',
+          item_two.id => '1'
+        },
+        user: {}
+      }
+    end
+    subject { described_class.new(params).builder }
+
+    it 'should return not valid user' do
+      expect(subject[:user]).to_not be_valid
+    end
+
+    it 'should return zero donations' do
+      expect(subject[:donations].size).to be_zero
+    end
+  end
+
   context 'Unavailable items for donation' do
     let!(:item_one) { create(:item, amount: 0) }
     let!(:params) do
