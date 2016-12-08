@@ -29,6 +29,8 @@ class DonationBuilderService
   end
 
   def create_user
+    return User.new if @params[:user].blank?
+
     User.create(
       email: @params[:user][:email],
       name: @params[:user][:name],
@@ -42,6 +44,8 @@ class DonationBuilderService
   end
 
   def fetch_donations
+    return unless @user.valid?
+
     @params[:items].each do |item, amount|
       item = Item.find(item.to_i)
 
@@ -64,9 +68,12 @@ class DonationBuilderService
 
     if donation.amount > item.amount
       warning_message(donation, item, valid_amount)
+
       update_item(item, valid_amount)
     else
-      @donations << donation.save
+      donation.save
+      @donations << donation
+
       update_item(item, donation.amount)
     end
   end
@@ -76,9 +83,10 @@ class DonationBuilderService
     message += "#{item.name} disponíveis"
 
     donation.amount = valid_amount
+    donation.save
 
     @warnings << message
-    @donations << donation.save
+    @donations << donation
   end
 
   def update_item(item, amount)

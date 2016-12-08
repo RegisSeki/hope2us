@@ -35,6 +35,20 @@ feature 'form donation' do
     end
   end
 
+  scenario 'empty contact fields' do
+    items = create_list(:item, 3)
+
+    visit donations_path
+
+    items.each do |item|
+      select('1', from: item.name)
+    end
+
+    click_on 'Doar!'
+
+    expect(page).to have_content('Preencha os campos para contato corretamente')
+  end
+
   scenario 'donation with unavailable item' do
     item_one = create(:item, amount: 2)
     item_two = create(:item, amount: 2)

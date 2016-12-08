@@ -4,6 +4,10 @@
     <%= select_tag "items[#{item.id}]", options_for_select(item.available_amounts), include_blank: true %>
   <% end %>
 
+  <% if flash[:error] %>
+    <p><%= flash[:error] %></p>
+  <% end %>
+
   <%= label_tag 'user[name]', 'Nome' %>
   <%= text_field_tag 'user[name]' %>
 
