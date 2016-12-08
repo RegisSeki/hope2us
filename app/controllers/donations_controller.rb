@@ -2,7 +2,7 @@ class DonationsController < ApplicationController
   before_action :set_items
   before_action :build_donation, only: :create
 
-  def index
+  def new
   end
 
   def create
@@ -16,7 +16,7 @@ class DonationsController < ApplicationController
     else
       flash.now[:error] = 'Preencha os campos para contato corretamente'
 
-      render :index
+      render :new
     end
   end
 

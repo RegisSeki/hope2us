@@ -4,7 +4,7 @@ feature 'form donation' do
   scenario 'user visit form donation' do
     items = create_list(:item, 3)
 
-    visit donations_path
+    visit new_donation_path
 
     items.each do |item|
       expect(page).to have_content item.name
@@ -17,7 +17,7 @@ feature 'form donation' do
     items = create_list(:item, 3)
     user = build(:user)
 
-    visit donations_path
+    visit new_donation_path
 
     items.each do |item|
       select('1', from: item.name)
@@ -38,7 +38,7 @@ feature 'form donation' do
   scenario 'empty contact fields' do
     items = create_list(:item, 3)
 
-    visit donations_path
+    visit new_donation_path
 
     items.each do |item|
       select('1', from: item.name)
@@ -54,7 +54,7 @@ feature 'form donation' do
     item_two = create(:item, amount: 2)
     user = build(:user)
 
-    visit donations_path
+    visit new_donation_path
 
     select('1', from: item_one.name)
     select('1', from: item_two.name)
@@ -76,7 +76,7 @@ feature 'form donation' do
     item_two = create(:item, amount: 2)
     user = build(:user)
 
-    visit donations_path
+    visit new_donation_path
 
     select('5', from: item_one.name)
     select('1', from: item_two.name)
