@@ -1,16 +1,24 @@
 class DonationsController < ApplicationController
+  before_action :set_items
   before_action :build_donation, only: :create
 
-  def index
-    @items = Item.all
+  def new
   end
 
   def create
-    sign_in(:user, @service[:user])
+    if @service[:user].valid?
+      sign_in(:user, @service[:user])
+      flash[:warnings] = @service[:warnings]
+      flash[:errors] = @service[:errors]
 
-    UserMailer.donation_mailer(@service[:user], @service[:donations]).deliver
+      donation_mailer
 
-    redirect_to confirmation_donations_path
+      redirect_to confirmation_donations_path
+    else
+      flash.now[:error] = 'Preencha os campos para contato corretamente'
+
+      render :new
+    end
   end
 
   def destroy
@@ -24,7 +32,15 @@ class DonationsController < ApplicationController
 
   private
 
+  def set_items
+    @items = Item.available
+  end
+
   def build_donation
     @service = DonationBuilderService.new(params).builder
+  end
+
+  def donation_mailer
+    UserMailer.donation_mailer(@service[:user], @service[:donations]).deliver
   end
 end

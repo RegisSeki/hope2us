@@ -12,8 +12,12 @@ module Hope2us
 	    #{config.root}/app/services
 	    #{config.root}/app/uploaders
 	  )
+
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    config.time_zone = 'Brasilia'
+
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :"pt-BR"
-    config.time_zone = 'Brasilia'
   end
 end

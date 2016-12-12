@@ -1,0 +1,23 @@
+#home-body{
+  .message{
+    img{
+      float: left;
+      width: 50%;
+    }
+
+    .content{
+      float: right;
+      width: 50%;
+      padding: 0 16px;
+
+      h2{
+        color: #fa6f1c;
+        font-weight: bold;
+      }
+
+      p{
+        font-size: 16px;
+      }
+    }
+  }
+}
