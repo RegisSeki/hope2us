@@ -4,7 +4,9 @@ feature 'form donation' do
   scenario 'user visit form donation' do
     items = create_list(:item, 3)
 
-    visit new_donation_path
+    visit root_path
+
+    click_on 'Faça sua doação'
 
     items.each do |item|
       expect(page).to have_content item.name
