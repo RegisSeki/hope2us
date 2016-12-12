@@ -16,7 +16,7 @@ feature 'receipt donation' do
     click_on 'Confirmar doação!'
 
     expect(page).to have_link 'Ver comprovante',
-                              href: donation_receipt_path(donation.id)
+                              href: receipt_donation_path(donation.id)
   end
 
   scenario 'receipt donation empty image' do

@@ -10,9 +10,8 @@ Rails.application.routes.draw do
 
     member do
     	get 'receipt/edit', to: 'donation_receipts#edit', as: :edit_receipt
+      get 'receipt', to: 'donation_receipts#show'
+      put 'receipt', to: 'donation_receipts#update'
     end
-
-    get 'receipt', to: 'donation_receipts#show'
-    put 'receipt', to: 'donation_receipts#update'
   end
 end

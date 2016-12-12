@@ -4,7 +4,7 @@ class DonationReceiptsController < ApplicationController
   end
 
   def update
-    @donation = Donation.find(params[:donation_id])
+    @donation = Donation.find(params[:id])
     if @donation.update(donation_receipt_params)
       redirect_to confirmation_donations_path
     else
