@@ -5,9 +5,12 @@ class DonationReceiptsController < ApplicationController
 
   def update
     @donation = Donation.find(params[:id])
-    @donation.update(donation_receipt_params)
-
-    redirect_to confirmation_donations_path
+    if @donation.update(donation_receipt_params)
+      redirect_to confirmation_donations_path
+    else
+      flash.now[:error] = 'Preencha os campos corretamente!'
+      render :edit
+    end
   end
 
   def edit
