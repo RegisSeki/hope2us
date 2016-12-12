@@ -4,13 +4,14 @@ feature 'send receipt donation' do
   scenario 'receipt donation successfully' do
     donation = create(:donation)
 
-    visit confirmation_donations_path
+    sign_in(donation.user)
 
-    click_on 'Enviar comprovante'
+    visit confirmation_donations_path
 
     fill_in 'Data de entrega', with: '10/12/2016'
 
+    click_on 'Enviar comprovante'
+
     expect(page).to have_content donation.delivery_of_date
-    expect(page).to have_content donation.image
   end
 end

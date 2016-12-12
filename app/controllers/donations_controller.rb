@@ -13,6 +13,15 @@ class DonationsController < ApplicationController
     redirect_to confirmation_donations_path
   end
 
+  def destroy
+    @donation = Donation.find(params[:id])
+    @donation.destroy
+
+    flash[:error] = 'A doação foi cancelada'
+
+    redirect_to confirmation_donations_path
+  end
+
   private
 
   def build_donation
