@@ -1,1 +1,15 @@
-<h1>Hello, Hope2us!</h1>
+<div id="home-body" class='page'>
+  <div class="message">
+    <%= image_tag('home/peace_building.jpg') %>
+
+    <div class="content">
+      <h2>Faça parte dessa história</h2>
+
+      <p>
+        Saiba como fazer doações e quais itens estão disponíveis
+      </p>
+
+      <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
