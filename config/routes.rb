@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   resources :donations, only: [:index, :create] do
     collection do
       get 'confirmation', to: 'confirmation#index'
-    end
+   end
     member do
-    	get 'receipt', to: 'donation_receipts#edit'
+    	get 'receipt/edit',
+        to: 'donation_receipts#edit',
+        as: :edit_receipt_donation
+      get 'receipt', to: 'donation_receipts#show'
       put 'receipt', to: 'donation_receipts#update'
     end
   end
