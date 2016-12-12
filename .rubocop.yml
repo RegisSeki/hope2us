@@ -17,4 +17,5 @@ AllCops:
     - config/**/*
     - db/**/*
     - Gemfile*
+    - app/uploaders/*
   TargetRubyVersion: 2.3

@@ -2,10 +2,10 @@
 <p>O seu número de doação: <%= @donation.id %></p>
 <p>Item: <%= @donation.item.name %></p>
 <p>Quantidade: <%= @donation.amount %></p>
-<p>Para finalizar a sua doação basta enviar 
+<p>Para finalizar a sua doação basta enviar
 	o seu comprovante de compra, e informar a data de previsão para entrega.
 </p>
-<%= form_tag(receipt_donation_path(@donation.id), multipart: true, method: :put) do %>
+<%= form_tag(donation_receipt_path(@donation.id), multipart: true, method: :put) do %>
 	<%= label_tag :date_of_delivery, 'Data de entrega' %>
 	<%= text_field_tag :date_of_delivery, nil, placeholder: 'DD/MM/AAAA', maxlength: 10 %><br>
 	<%= label_tag :image, 'Escolha o arquivo:' %><br>

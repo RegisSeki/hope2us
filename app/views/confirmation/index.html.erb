@@ -3,10 +3,10 @@
 <% @donations.each do |donation| %>
   <p><%= donation.item.name %></p>
   <% if donation.image? %>
-		<%= link_to 'Ver comprovante', receipt_donation_path(donation.id)%>
+		<%= link_to 'Ver comprovante', donation_receipt_path(donation.id)%>
 	<% else %>
-  	<%= link_to 'Enviar comprovante', edit_receipt_donation_donation_path(donation.id) %>
-  	<%= link_to 'Cancelar doação', donation, :method => :delete %>
+  	<%= link_to 'Enviar comprovante', edit_receipt_donation_path(donation.id) %>
+    <%#= link_to 'Cancelar doação', donation, :method => :delete %>
 	<% end %>
 <% end %>
 

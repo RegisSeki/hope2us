@@ -9,9 +9,7 @@ Rails.application.routes.draw do
     end
 
     member do
-    	get 'receipt/edit',
-          to: 'donation_receipts#edit',
-          as: :edit_receipt_donation
+    	get 'receipt/edit', to: 'donation_receipts#edit', as: :edit_receipt
     end
 
     get 'receipt', to: 'donation_receipts#show'
