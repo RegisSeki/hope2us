@@ -21,9 +21,11 @@ class DonationsController < ApplicationController
     end
   end
 
-  def destroy
+  def cancel
     @donation = Donation.find(params[:id])
-    @donation.destroy
+    @donation.canceled!
+
+    update_amount_item
 
     flash[:error] = 'A doação foi cancelada'
 
@@ -42,5 +44,14 @@ class DonationsController < ApplicationController
 
   def donation_mailer
     UserMailer.donation_mailer(@service[:user], @service[:donations]).deliver
+  end
+
+  def update_amount_item
+    item = @donation.item
+
+    item.update(
+      amount: item.amount + @donation.amount,
+      reserved: item.reserved - @donation.amount
+    )
   end
 end

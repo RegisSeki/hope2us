@@ -3,9 +3,6 @@ class Donation < ApplicationRecord
   belongs_to :item
   mount_uploader :image, DonationUploader
 
-  validates :date_of_delivery,
-            :image,
-            presence: true, on: :update
   validates :user, :item, presence: true
   validate :limit_amount, on: :create
 
