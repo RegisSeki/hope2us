@@ -15,8 +15,8 @@ feature 'user cancel donation' do
   end
 
   scenario 'correct amount item of canceled donation' do
-  	item = create(:item, amount: 3, reserved: 2)
-		donation = create(:donation, item: item, amount: 2)
+    item = create(:item, amount: 3, reserved: 2)
+    donation = create(:donation, item: item, amount: 2)
 
     login_as(donation.user)
 
@@ -26,6 +26,6 @@ feature 'user cancel donation' do
 
     visit new_donation_path
 
-    expect(page).to have_select(item.name, with_options: ['5'])
+    expect(page).to have_select(item.name, with_options: %w(5 4))
   end
 end
