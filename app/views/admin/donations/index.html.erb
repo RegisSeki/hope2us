@@ -23,7 +23,22 @@
           <th><%= donation.id %></th>
           <td><%= donation.item.name %></td>
           <td><%= donation.amount %></td>
-          <td><%= donation.status %></td>
+          <% if donation.image? %>
+            <td>
+              <%= link_to('Ver Comprovante',
+                admin_donation_path(donation.id),
+                class: 'btn btn-danger') %>
+            </td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+          <td>
+            <% if donation.approved? %>
+              Aprovado
+            <% else %>
+              <%= donation.status %>
+            <% end %>
+          </td>
         <% end %>
         </tr>
       </tbody>

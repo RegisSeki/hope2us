@@ -4,13 +4,13 @@
       <li><%= link_to 'Home', root_path %></li>
       <% if user_signed_in? %>
       	<li><%= link_to 'Minhas Doações', confirmation_donations_path %></li>
-      <% else %>
-        <% if admin_user_signed_in?%>
-          <li>Olá <%= current_admin_user.email %></li>
-          <li><%= link_to 'Sair', destroy_admin_user_session_path, method: :delete %></li>
-          <% else %>
-          <li><%= link_to 'Admin', new_admin_user_session_path%></li>
-        <% end %>  
+      <% end %>
+      <% if admin_user_signed_in?%>
+        <li>Olá <%= current_admin_user.email %></li>
+        <li><%= link_to 'Minhas Doações', admin_donations_path %>
+        <li><%= link_to 'Sair', destroy_admin_user_session_path, method: :delete %></li>
+        <% else %>
+        <li><%= link_to 'Admin', new_admin_user_session_path%></li>
       <% end %>
   </nav>
 </header>

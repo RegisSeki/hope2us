@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-feature 'receipt donation' do
-  scenario 'receipt donation successfully' do
+feature 'User add receipt to donation' do
+  scenario 'successfully' do
     donation = create(:donation)
 
     login_as(donation.user)

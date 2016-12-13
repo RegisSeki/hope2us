@@ -1,0 +1,7 @@
+<p>Doação número:  <%= @donation.id %></p>
+<p>Item: <%= @donation.item.name %></p>
+<p>Quantidade: <%= @donation.amount %></p>
+<h3>Comprovante: </h3>
+<p><%= image_tag(@donation.image) %></p>
+
+<%= link_to 'Aprovar', approve_admin_donation_path(@donation.id), method: :post, class: 'btn btn-default' %>
