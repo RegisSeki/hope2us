@@ -1,0 +1,6 @@
+pt-BR:
+  donation_status:
+    waiting: Esperando
+    approved: Aprovado
+    confirmed: Confirmado
+    canceled: Cancelado
