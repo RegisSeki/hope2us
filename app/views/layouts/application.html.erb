@@ -9,8 +9,10 @@
   </head>
 
   <body>
-    <%= flash[:error] %>
+    <%= render 'shared/header' %>
     
+    <%= flash[:error] %>
+
     <%= yield %>
   </body>
 </html>

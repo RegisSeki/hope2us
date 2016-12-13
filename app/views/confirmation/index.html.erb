@@ -1,27 +1,52 @@
-<h1>Olá <%= current_user.name %></h1>
-<p>Itens: </p>
-<% @donations.each do |donation| %>
-  <p><%= donation.item.name %></p>
-  <% if donation.image? %>
-		<%= link_to 'Ver comprovante', receipt_donation_path(donation.id)%>
-	<% else %>
-  	<%= link_to 'Enviar comprovante', edit_receipt_donation_path(donation.id) %>
-    <%= link_to 'Cancelar doação', cancel_donation_path(donation.id), method: :post%>
-	<% end %>
-<% end %>
+<div id="confirmation-body" class="page">
+  <h1>Olá, <%= current_user.name %></h1>
 
-<% if flash[:errors] %>
-  <div class="errors">
-    <% flash[:errors].each do |error| %>
-      <p><%= error %></p>
-    <% end %>
-  </div>
-<% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Não se esqueça de nos enviar o comprovante de cada doação:
+    </div>
 
-<% if flash[:warnings] %>
-  <div class="warnings">
-    <% flash[:warnings].each do |warning| %>
-      <p><%= warning %></p>
-    <% end %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @donations.each_with_index do |donation, index| %>
+        <tr>
+          <th><%= index + 1 %></th>
+          <td><%= donation.item.name %></td>
+          <td>
+            <% if donation.image? %>
+          		<%= link_to 'Ver comprovante', receipt_donation_path(donation.id)%>
+          	<% else %>
+            	<%= link_to 'Enviar comprovante', edit_receipt_donation_path(donation.id) %>
+              <%= link_to 'Cancelar doação', cancel_donation_path(donation.id), method: :post %>
+          	<% end %>
+          </td>
+        <% end %>
+        </tr>
+      </tbody>
+    </table>
   </div>
-<% end %>
+
+  <% if flash[:errors] %>
+    <div class="errors">
+      <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if flash[:warnings] %>
+    <div class="warnings">
+      <% flash[:warnings].each do |warning| %>
+        <p><%= warning %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

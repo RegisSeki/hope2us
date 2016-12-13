@@ -1,0 +1,11 @@
+<header id="master">
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+
+      <% if user_signed_in? %>
+      	<li><%= link_to 'Minhas Doações', confirmation_donations_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
