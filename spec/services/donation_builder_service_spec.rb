@@ -85,7 +85,7 @@ describe DonationBuilderService do
         }
       }
     end
-    let!(:message) { "Apenas 3/5 #{item_one.name} disponíveis" }
+    let!(:message) { "Apenas 3 de 5 #{item_one.name} disponíveis" }
 
     subject { described_class.new(params).builder }
 

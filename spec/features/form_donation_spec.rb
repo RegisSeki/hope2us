@@ -94,7 +94,7 @@ feature 'form donation' do
     expect(page).to have_content item_one.name
     expect(page).to have_content item_two.name
     expect(page).to have_content(
-      "Apenas 2/5 #{item_one.name} disponíveis"
+      "Apenas 2 de 5 #{item_one.name} disponíveis"
     )
   end
 end

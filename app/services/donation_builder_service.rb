@@ -49,6 +49,8 @@ class DonationBuilderService
     @params[:items].each do |item, amount|
       item = Item.find(item.to_i)
 
+      next if amount.to_i.zero?
+
       create_donation(item, amount.to_i)
     end
   end
@@ -79,7 +81,7 @@ class DonationBuilderService
   end
 
   def warning_message(donation, item, valid_amount)
-    message = "Apenas #{valid_amount}/#{donation.amount} "
+    message = "Apenas #{valid_amount} de #{donation.amount} "
     message += "#{item.name} disponíveis"
 
     donation.amount = valid_amount
