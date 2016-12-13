@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :donations, only: [:new, :index, :create, :destroy] do
+  resources :donations, only: [:new, :index, :create] do
     collection do
       get 'confirmation', to: 'confirmation#index'
     end
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     	get 'receipt/edit', to: 'donation_receipts#edit', as: :edit_receipt
       get 'receipt', to: 'donation_receipts#show'
       put 'receipt', to: 'donation_receipts#update'
+      post 'cancel', to: 'donations#cancel'
     end
   end
 end
