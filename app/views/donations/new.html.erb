@@ -1,6 +1,6 @@
 <div id="donation-form" class="page">
   <%= form_tag donations_path, class: 'form-horizontal' do %>
-    <div class="container clearfix">
+    <div class="form-container clearfix">
       <div class="items-container">
         <h2>Escolhas os items que deseja doar: </h2>
         <% @items.each do |item| %>
@@ -40,12 +40,9 @@
       </div>
     </div>
 
-    <div class="errors">
-      <% if flash[:error] %>
-        <p><%= flash[:error] %></p>
-      <% end %>
+    <div class="form-group">
+      <%= submit_tag 'Doar!', class: 'btn btn-primary' %>
+      <%= link_to 'Voltar', root_path, class: 'btn btn-default' %>
     </div>
-
-    <%= submit_tag 'Doar!', class: 'btn btn-primary' %>
   <% end %>
 </div>

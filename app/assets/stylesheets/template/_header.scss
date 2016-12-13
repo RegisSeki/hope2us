@@ -1,14 +1,18 @@
 header#master{
   width: 100%;
+  min-height: 80px;
+  border-bottom: 1px solid #ccc;
 
   nav{
     width: 1024px;
 
     ul{
       float: right;
+      line-height: 80px;
 
       li{
         display: inline-block;
+        margin: 0 8px;
       }
     }
   }
