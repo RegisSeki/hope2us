@@ -1,5 +1,8 @@
-<h1>A hope2us agradece a sua doação.</h1>
-<p>O seu número de doação: <%= @donation.id %></p>
+<div id="donation-receipt-body">
+	<h1>A hope2us agradece a sua doação.</h1>
+	<h2>O seu número de doação: <%= @donation.id %></h2>
+
+</div>
 <p>Item: <%= @donation.item.name %></p>
 <p>Quantidade: <%= @donation.amount %></p>
 <p>Para finalizar a sua doação basta enviar
