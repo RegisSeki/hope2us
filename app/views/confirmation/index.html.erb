@@ -11,6 +11,7 @@
         <tr>
           <th>#</th>
           <th>Item</th>
+          <th>Quantidade</th>
           <th></th>
         </tr>
       </thead>
@@ -20,6 +21,7 @@
         <tr>
           <th><%= index + 1 %></th>
           <td><%= donation.item.name %></td>
+          <td><%= donation.amount %></td>
           <td>
             <% if donation.image? %>
           		<%= link_to 'Ver comprovante', receipt_donation_path(donation.id)%>
