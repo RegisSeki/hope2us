@@ -1,17 +1,44 @@
-<div id="donation-receipt-body">
+<div id="donation-receipt-body" class="page">
 	<h1>A hope2us agradece a sua doação.</h1>
-	<h2>O seu número de doação: <%= @donation.id %></h2>
 
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  	O seu número de doação: <%= @donation.id %>
+	  </div>
+
+	  <ul class="list-group">
+	    <li class="list-group-item">
+	    	<strong>Item:</strong> <%= @donation.item.name %>
+	    </li>
+	    <li class="list-group-item">
+	    	<strong>Quantidade:</strong> <%= @donation.amount %>
+	    </li>
+	  </ul>
+
+	  <div class="panel-body">
+			<p>Para finalizar a sua doação basta enviar
+				o seu comprovante de compra, e informar a data de previsão para entrega.
+			</p>
+
+			<%= form_tag(receipt_donation_path(@donation.id), multipart: true, method: :put, class: 'form-horizontal') do %>
+				<div class="form-group">
+					<%= label_tag :date_of_delivery, 'Data de entrega', class: 'col-sm-2 control-label' %>
+
+					<div class="col-sm-10">
+						<%= text_field_tag :date_of_delivery, nil, placeholder: 'DD/MM/AAAA', maxlength: 10, class: 'form-control' %><br>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<%= label_tag :image, 'Escolha o arquivo:', class: 'col-sm-2 control-label' %>
+
+					<div class="col-sm-10">
+						<%= file_field_tag :image %>
+					</div>
+				</div>
+
+				<%= submit_tag 'Confirmar doação!', class: 'btn btn-primary' %>
+			<% end %>
+	  </div>
+	</div>
 </div>
-<p>Item: <%= @donation.item.name %></p>
-<p>Quantidade: <%= @donation.amount %></p>
-<p>Para finalizar a sua doação basta enviar
-	o seu comprovante de compra, e informar a data de previsão para entrega.
-</p>
-<%= form_tag(receipt_donation_path(@donation.id), multipart: true, method: :put) do %>
-	<%= label_tag :date_of_delivery, 'Data de entrega' %>
-	<%= text_field_tag :date_of_delivery, nil, placeholder: 'DD/MM/AAAA', maxlength: 10 %><br>
-	<%= label_tag :image, 'Escolha o arquivo:' %><br>
-	<%= file_field_tag :image %> <br><br>
-	<%= submit_tag 'Confirmar doação!' %><br>
-<% end %>
