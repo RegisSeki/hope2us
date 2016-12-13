@@ -6,6 +6,7 @@
       <% if user_signed_in? %>
       	<li><%= link_to 'Minhas Doações', confirmation_donations_path %></li>
       <% end %>
+    		<li><%= link_to 'Admin', new_admin_user_session_path%></li>
     </ul>
   </nav>
 </header>

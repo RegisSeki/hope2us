@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_for :admin_users
+
+  namespace :admin do
+    resources :donations, only: [:index]  
+  end
 
   root 'home#index'
 
