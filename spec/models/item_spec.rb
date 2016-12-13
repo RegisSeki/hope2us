@@ -17,4 +17,12 @@ RSpec.describe Item, type: :model do
       expect(Item.available.size).to eq(1)
     end
   end
+
+  describe 'total amount' do
+    it 'should sum of amount, reserved and confirmed' do
+      item = create(:item, amount: 5, reserved: 1, confirmed: 0)
+
+      expect(item.total_amount).to eq(6)
+    end
+  end
 end
