@@ -12,8 +12,18 @@
     <%= notice %>
     <%= alert %>
     <%= render 'shared/header' %>
-    
-    <%= flash[:error] %>
+
+    <% if flash[:error] %>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
     <%= yield %>
   </body>

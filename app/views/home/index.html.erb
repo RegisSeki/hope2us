@@ -1,7 +1,7 @@
 <%= render 'shared/banner' %>
 
 <div id="home-body" class='page'>
-  <div class="message">
+  <div class="message clearfix">
     <%= image_tag('home/peace_building.jpg') %>
 
     <div class="content">
@@ -12,6 +12,29 @@
       </p>
 
       <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="donations">
+    <h1>Doações recentes</h1>
+
+    <h2>Falta pouco! Doe você também!</h2>
+
+    <div class="row">
+      <% @donations.each do |donation| %>
+        <div class="col-md-4">
+          <div class="thumb">
+            <%= donation.item.name %>
+          </div>
+
+          <p class="amount">
+            Doado: <%= donation.item.confirmed %> /
+            <span><%= donation.item.total_amount %></span>
+          </p>
+
+          <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
