@@ -1,0 +1,47 @@
+<div id="confirmation-body" class="page">
+  <h1>Olá, <%= current_admin_user.email %></h1>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Lista de doações
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+          <th>Quantidade</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @donations.each_with_index do |donation, index| %>
+        <tr>
+          <th><%= donation.id %></th>
+          <td><%= donation.item.name %></td>
+          <td><%= donation.amount %></td>
+          <td><%= donation.status %></td>
+        <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% if flash[:errors] %>
+    <div class="alert alert-info alert-dismissible" role="alert">
+      <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if flash[:warnings] %>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <% flash[:warnings].each do |warning| %>
+        <p><%= warning %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
