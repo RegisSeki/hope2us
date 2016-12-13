@@ -46,7 +46,7 @@
   </div>
 
   <% if flash[:errors] %>
-    <div class="errors">
+    <div class="alert alert-info alert-dismissible" role="alert">
       <% flash[:errors].each do |error| %>
         <p><%= error %></p>
       <% end %>
@@ -54,7 +54,7 @@
   <% end %>
 
   <% if flash[:warnings] %>
-    <div class="warnings">
+    <div class="alert alert-warning alert-dismissible" role="alert">
       <% flash[:warnings].each do |warning| %>
         <p><%= warning %></p>
       <% end %>

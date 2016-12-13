@@ -15,9 +15,9 @@ class DonationsController < ApplicationController
 
       redirect_to confirmation_donations_path
     else
-      flash.now[:error] = 'Preencha os campos para contato corretamente'
+      flash[:error] = 'Preencha os campos para contato corretamente'
 
-      render :new
+      redirect_to new_donation_path
     end
   end
 
@@ -27,7 +27,7 @@ class DonationsController < ApplicationController
 
     update_amount_item
 
-    flash[:error] = 'A doação foi cancelada'
+    flash[:notice] = 'A doação foi cancelada'
 
     redirect_to confirmation_donations_path
   end
