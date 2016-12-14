@@ -34,12 +34,14 @@ describe DonationBuilderService do
   end
 
   context 'email already exist' do
-    let!(:user) { create(
-      :user,
-      name: 'Usuário',
-      phone: '1234-1234',
-      email: 'usuario@email.com'
-    ) }
+    let!(:user) do
+      create(
+        :user,
+        name: 'Usuário',
+        phone: '1234-1234',
+        email: 'usuario@email.com'
+      )
+    end
     let!(:item_one) { create(:item, amount: 5) }
     let!(:item_two) { create(:item, amount: 3) }
     let!(:args) do
