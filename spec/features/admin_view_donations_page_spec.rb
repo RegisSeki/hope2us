@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'admin donations page' do
+feature 'admin view donations page' do
   scenario 'donations list' do
     user = create(:user)
     admin_user = create(:admin_user)

@@ -39,7 +39,9 @@ class DonationsController < ApplicationController
   end
 
   def build_donation
-    @service = DonationBuilderService.new(params).builder
+    @service = DonationBuilderService.new(
+      params: params, current_user: current_user
+    ).builder
   end
 
   def donation_mailer

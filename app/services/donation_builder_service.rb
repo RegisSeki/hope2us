@@ -1,6 +1,7 @@
 class DonationBuilderService
-  def initialize(params)
-    @params = params
+  def initialize(args)
+    @params = args[:params]
+    @current_user = args[:current_user]
     @errors = []
     @donations = []
     @warnings = []
@@ -21,6 +22,8 @@ class DonationBuilderService
   private
 
   def fetch_user
+    return @current_user unless @current_user.nil?
+
     if User.where(email: @params[:user][:email]).blank?
       create_user
     else

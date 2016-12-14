@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-feature 'recent donations in homepage' do
-  scenario 'confirmed donations' do
+feature 'user view recent donations' do
+  scenario 'confirmed donations in homepage' do
     user = create(:user)
     donations = create_list(:donation, 3, user: user, status: 'confirmed')
 

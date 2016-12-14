@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user see donations' do
+feature 'user view donations' do
   scenario 'when logged in' do
     donation = create(:donation, image: nil, status: 'pending_receipt')
 
