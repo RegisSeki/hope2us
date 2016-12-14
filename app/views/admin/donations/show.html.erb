@@ -1,11 +1,29 @@
-<p>Doação número:  <%= @donation.id %></p>
-<p>Item: <%= @donation.item.name %></p>
-<p>Quantidade: <%= @donation.amount %></p>
-<h3>Comprovante: </h3>
-<p><%= image_tag(@donation.image) %></p>
+<div id="donations-body" class="page">
 
-<% if @donation.approved? %>
-  <%= link_to 'Voltar', admin_donations_path, class: 'btn btn-default' %>
-<% else %>
-  <%= link_to 'Aprovar', approve_admin_donation_path(@donation.id), method: :post, class: 'btn btn-default' %>
-<% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Comprovante da doação <%= "##{@donation.id}" %>
+    </div>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>Item:</strong> <%= @donation.item.name %>
+      </li>
+      <li class="list-group-item">
+        <strong>Quantidade:</strong> <%= @donation.amount %>
+      </li>
+    </ul>
+
+    <div class="panel-body">
+      <%= image_tag(@donation.image) %>
+    </div>
+
+    <div class="panel-footer">
+      <% if @donation.approved? || @donation.confirmed? %>
+      <%= link_to 'Voltar', admin_donations_path, class: 'btn btn-default' %>
+      <% else %>
+      <%= link_to 'Aprovar', approve_admin_donation_path(@donation.id), method: :post, class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>

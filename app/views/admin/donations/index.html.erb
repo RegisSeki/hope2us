@@ -1,4 +1,4 @@
-<div id="confirmation-body" class="page">
+<div id="donations-body" class="page">
   <h1>Doações</h1>
 
   <div class="panel panel-default">
@@ -24,27 +24,26 @@
           <td><%= donation.item.name %></td>
           <td><%= donation.amount %></td>
           <td><%= t("donation_status.#{donation.status}")%></td>
-          <% if donation.image? %>
-            <td>
-              <%= link_to 'Ver comprovante',
-                  admin_donation_path(donation.id),
-                  class: 'btn btn-primary' %>
-            </td>
-          <% end %>
-          <% if donation.approved? %>
-            <td>
+          <td>
+            <% if donation.approved? %>
               <%= link_to 'Confirmar doação',
-              confirm_admin_donation_path(donation.id), method: :post,
-              class: 'btn btn-primary' %>
-            </td>
-          <% end %>
+                  confirm_admin_donation_path(donation.id),
+                  method: :post,
+                  class: 'btn btn-success' %>
+            <% end %>
+            <% if donation.image? %>
+                <%= link_to 'Ver comprovante',
+                    admin_donation_path(donation.id),
+                    class: 'btn btn-primary' %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 
-  <% if flash[:errors] %>
+  <% unless flash[:errors].blank? %>
     <div class="alert alert-info alert-dismissible" role="alert">
       <% flash[:errors].each do |error| %>
         <p><%= error %></p>
@@ -52,7 +51,7 @@
     </div>
   <% end %>
 
-  <% if flash[:warnings] %>
+  <% unless flash[:warnings].blank? %>
     <div class="alert alert-warning alert-dismissible" role="alert">
       <% flash[:warnings].each do |warning| %>
         <p><%= warning %></p>

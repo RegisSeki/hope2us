@@ -27,7 +27,7 @@
               <%= link_to(
                 'Enviar comprovante',
                 edit_receipt_donation_path(donation),
-                class: 'btn btn-primary'
+                class: 'btn btn-success'
               ) %>
               <%= link_to(
                 'Cancelar doação',
@@ -36,12 +36,6 @@
                 class: 'btn btn-danger'
               ) %>
             <% elsif donation.waiting_approval? %>
-              <%= link_to(
-                'Cancelar doação',
-                cancel_donation_path(donation),
-                method: :post,
-                class: 'btn btn-danger'
-              ) %>
               <%= link_to(
                 'Ver comprovante',
                 receipt_donation_path(donation),

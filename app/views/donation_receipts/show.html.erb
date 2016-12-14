@@ -1,7 +1,24 @@
-<p>O seu numero de doação é:  <%= @donation.id %></p>
-<p>Item: <%= @donation.item.name %></p>
-<p>Quantidade: <%= @donation.amount %></p>
-<h3>Comprovante: </h3>
-<p><%= image_tag(@donation.image) %></p>
+<div id="donations-body" class="page">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Comprovante da doação <%= "##{@donation.id}" %>
+    </div>
 
-<%= link_to 'Voltar', confirmation_donations_path %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>Item:</strong> <%= @donation.item.name %>
+      </li>
+      <li class="list-group-item">
+        <strong>Quantidade:</strong> <%= @donation.amount %>
+      </li>
+    </ul>
+
+    <div class="panel-body">
+      <%= image_tag(@donation.image) %>
+    </div>
+
+    <div class="panel-footer">
+      <%= link_to 'Voltar', confirmation_donations_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+</div>
