@@ -24,12 +24,10 @@ items.each do |item|
 		user: user,
 		item: item,
 		date_of_delivery: Time.now.to_datetime,
-		amount: item.reserved,
+		amount: item.confirmed,
 		image: 'receipt.jpg',
 		status: 'confirmed'
 	)
-
-  AdminUser.create([
-    { email: 'admin.user@gmail.com', password: '123456789'}
-    ])
 end
+
+AdminUser.create(email: 'admin.user@gmail.com', password: '123456789')

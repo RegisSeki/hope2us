@@ -13,6 +13,7 @@
           <th>Item</th>
           <th>Quantidade</th>
           <th>Status</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -26,8 +27,8 @@
           <% if donation.image? %>
             <td>
               <%= link_to 'Ver comprovante',
-              admin_donation_path(donation.id),
-              class: 'btn btn-primary' %>
+                  admin_donation_path(donation.id),
+                  class: 'btn btn-primary' %>
             </td>
           <% end %>
           <% if donation.approved? %>
