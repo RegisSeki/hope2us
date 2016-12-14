@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin approve donation receipt' do
   scenario 'visit donation page to approve' do
     admin_user = create(:admin_user)
-    donation = create(:donation)
+    donation = create(:donation, status: 'waiting_approval')
 
     login_as(admin_user, scope: :admin_user)
 
@@ -18,7 +18,7 @@ feature 'Admin approve donation receipt' do
 
   scenario 'approve donation successfully' do
     admin_user = create(:admin_user)
-    donation = create(:donation)
+    donation = create(:donation, status: 'waiting_approval')
 
     login_as(admin_user, scope: :admin_user)
 

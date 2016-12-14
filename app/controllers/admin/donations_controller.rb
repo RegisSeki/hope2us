@@ -3,7 +3,7 @@ module Admin
     before_action :authenticate_admin_user!
 
     def index
-      @donations = Donation.all
+      @donations = Donation.all.order(:status)
     end
 
     def show

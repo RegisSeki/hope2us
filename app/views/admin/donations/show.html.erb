@@ -19,11 +19,11 @@
     </div>
 
     <div class="panel-footer">
-      <% if @donation.approved? || @donation.confirmed? %>
-      <%= link_to 'Voltar', admin_donations_path, class: 'btn btn-default' %>
-      <% else %>
-      <%= link_to 'Aprovar', approve_admin_donation_path(@donation.id), method: :post, class: 'btn btn-default' %>
+      <% if @donation.waiting_approval? %>
+        <%= link_to 'Aprovar', approve_admin_donation_path(@donation.id), method: :post, class: 'btn btn-success' %>
       <% end %>
+
+      <%= link_to 'Voltar', admin_donations_path, class: 'btn btn-default' %>
     </div>
   </div>
 </div>
