@@ -13,6 +13,14 @@ module Admin
     def approve
       @donation = Donation.find(params[:id])
       @donation.approved!
+
+      redirect_to admin_donations_path
+    end
+
+    def confirm
+      @donation = Donation.find(params[:id])
+      @donation.confirmed!
+
       redirect_to admin_donations_path
     end
 

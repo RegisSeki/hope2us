@@ -1,17 +1,20 @@
 require 'rails_helper'
 
-feature 'admin user see donations'	do
-  scenario 'when logged in' do
+feature 'admin confirmed donation' do
+  scenario 'successfully' do
     admin_user = create(:admin_user)
-    donation = create(:donation)
+    create(:donation)
 
     login_as(admin_user, scope: :admin_user)
 
     visit admin_donations_path
 
-    expect(page).to have_content donation.id
-    expect(page).to have_content donation.item.name
-    expect(page).to have_content donation.amount
-    expect(page).to have_content 'Esperando'
+    click_on 'Ver comprovante'
+
+    click_on 'Aprovar'
+
+    click_on 'Confirmar doação'
+
+    expect(page).to have_content 'Confirmado'
   end
 end

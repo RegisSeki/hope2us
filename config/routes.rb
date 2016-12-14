@@ -7,6 +7,7 @@ Rails.application.routes.draw do
    resources :donations, only: [:index, :show] do
      member do
        post 'approve'
+       post 'confirm'
      end
    end
   end
