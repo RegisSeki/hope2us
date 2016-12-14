@@ -6,9 +6,9 @@
   <body>
     <h1>Obrigado pela doação :)</h1>
     <p>
-      Olá <%= @user.name %>
-      Aguardamos o seu comprovante, para finalizar a doação
-      só clicar no link <%= link_to 'Enviar comprovante', @url %>.
+      Olá <%= @user.name %>,
+      aguardamos o seu comprovante para finalizar a doação.
+      <p>Para enviar o comprovante clique no link <%= link_to 'Enviar comprovante', @url %></p>
     </p>
     <strong>Itens doados:</strong>
     <thead>
@@ -21,13 +21,13 @@
     <% @donations.each do |donation| %>
       <tr>
         <td><%= donation.item.name %></td>
-        <td><%= donation.item.amount %><td>
+        <td><%= donation.amount %><td>
       </tr>
     </tbody>
     <% end %>
     <p>
-      Caso tenhamos alguma dúvida, entraremos em contato pelo telefone
-      <%= @user.phone %>  
+      Qualquer dúvida entraremos em contato. 
+      <p>Seu número: <%= @user.phone %></p>  
     </p>
   </body>
 </html>

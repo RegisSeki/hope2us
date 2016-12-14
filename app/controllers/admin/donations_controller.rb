@@ -13,6 +13,7 @@ module Admin
     def approve
       @donation = Donation.find(params[:id])
       @donation.approved!
+      update_donation_item
 
       redirect_to admin_donations_path
     end
@@ -28,6 +29,14 @@ module Admin
 
     def donation_admin_params
       params.permit(:id, :status)
+    end
+
+    def update_donation_item
+      item = @donation.item
+      item.update(
+        reserved: item.reserved - @donation.amount,
+        confirmed: item.confirmed + @donation.amount
+      )
     end
   end
 end
