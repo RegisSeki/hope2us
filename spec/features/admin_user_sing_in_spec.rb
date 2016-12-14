@@ -16,7 +16,7 @@ feature 'admin user sign in'	do
     end
 
     expect(current_path).to eq(admin_donations_path)
-    expect(page).to have_content(admin_user.email.to_s)
+    expect(page).to have_content(admin_user.email)
     expect(page).to have_link 'Sair'
   end
 
@@ -31,6 +31,6 @@ feature 'admin user sign in'	do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_link('Admin')
-    expect(page).not_to have_content(admin_user.email.to_s)
+    expect(page).not_to have_content(admin_user.email)
   end
 end

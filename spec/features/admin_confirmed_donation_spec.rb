@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin approve donation receipt' do
+feature 'admin confirmed donation' do
   scenario 'successfully' do
     admin_user = create(:admin_user)
     create(:donation)
@@ -13,6 +13,8 @@ feature 'Admin approve donation receipt' do
 
     click_on 'Aprovar'
 
-    expect(page).to have_content 'Aprovado'
+    click_on 'Confirmar doação'
+
+    expect(page).to have_content 'Confirmado'
   end
 end

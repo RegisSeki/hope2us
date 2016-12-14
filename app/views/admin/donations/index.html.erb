@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-      <% @donations.each_with_index do |donation, index| %>
+      <% @donations.each do |donation| %>
         <tr>
           <th><%= donation.id %></th>
           <td><%= donation.item.name %></td>
@@ -24,15 +24,20 @@
           <td><%= t("donation_status.#{donation.status}")%></td>
           <% if donation.image? %>
             <td>
-              <%= link_to('Ver Comprovante',
-                admin_donation_path(donation.id),
-                class: 'btn btn-primary') %>
+              <%= link_to 'Ver comprovante',
+              admin_donation_path(donation.id),
+              class: 'btn btn-primary' %>
             </td>
-          <% else %>
-            <td>-</td>
           <% end %>
-        <% end %>
+          <% if donation.approved? %>
+            <td>
+              <%= link_to 'Confirmar doação',
+              confirm_admin_donation_path(donation.id), method: :post, 
+              class: 'btn btn-primary' %>
+            </td>
+          <% end %>
         </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
@@ -50,4 +55,4 @@
       <% end %>
     </div>
   <% end %>
-</div>
+  </div>
