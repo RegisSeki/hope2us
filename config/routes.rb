@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   devise_for :admin_users
 
   namespace :admin do
-   resources :donations, only: [:index]
+   resources :donations, only: [:index, :show] do
+     member do
+       post 'approve'
+     end
+   end
   end
 
   resources :donations, only: [:new, :index, :create] do

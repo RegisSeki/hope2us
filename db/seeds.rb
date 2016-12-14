@@ -28,4 +28,8 @@ items.each do |item|
 		image: 'receipt.jpg',
 		status: 'confirmed'
 	)
+
+  AdminUser.create([
+    { email: 'admin.user@gmail.com', password: '123456789'}
+    ])
 end

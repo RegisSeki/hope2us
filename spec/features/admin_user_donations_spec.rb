@@ -12,6 +12,6 @@ feature 'admin user see donations'	do
     expect(page).to have_content donation.id
     expect(page).to have_content donation.item.name
     expect(page).to have_content donation.amount
-    expect(page).to have_content 'Esperando'
+    expect(page).to have_content 'Aguardando Recibo'
   end
 end

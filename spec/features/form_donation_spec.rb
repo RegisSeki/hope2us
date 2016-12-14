@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'form donation' do
+feature 'User create donation' do
   scenario 'user visit form donation' do
     items = create_list(:item, 3)
 

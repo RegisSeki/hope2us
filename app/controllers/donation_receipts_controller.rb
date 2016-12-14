@@ -10,6 +10,7 @@ class DonationReceiptsController < ApplicationController
       render :edit
     else
       @donation.update(donation_receipt_params)
+      @donation.waiting_approval!
       redirect_to confirmation_donations_path
     end
   end

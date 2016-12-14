@@ -23,21 +23,37 @@
           <td><%= donation.item.name %></td>
           <td><%= donation.amount %></td>
           <td>
-            <% if donation.image? %>
-          		<%= link_to 'Ver comprovante', receipt_donation_path(donation.id)%>
-          	<% else %>
-            	<%= link_to(
+            <% if donation.pending_receipt?  %>
+              <%= link_to(
                 'Enviar comprovante',
-                edit_receipt_donation_path(donation.id),
+                edit_receipt_donation_path(donation),
                 class: 'btn btn-primary'
               ) %>
               <%= link_to(
                 'Cancelar doação',
-                cancel_donation_path(donation.id),
+                cancel_donation_path(donation),
                 method: :post,
                 class: 'btn btn-danger'
               ) %>
-          	<% end %>
+            <% elsif donation.waiting_approval? %>
+              <%= link_to(
+                'Cancelar doação',
+                cancel_donation_path(donation),
+                method: :post,
+                class: 'btn btn-danger'
+              ) %>
+              <%= link_to(
+                'Ver comprovante',
+                receipt_donation_path(donation),
+                class: 'btn btn-primary'
+              ) %>
+            <% else %>
+              <%= link_to(
+                'Ver comprovante',
+                receipt_donation_path(donation),
+                class: 'btn btn-primary'
+              ) %>
+            <% end %>
           </td>
         <% end %>
         </tr>
