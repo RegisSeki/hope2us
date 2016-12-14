@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user cancel donation' do
-  scenario 'status canceled' do
+  scenario 'successfully' do
     donation = create(:donation)
 
     login_as(donation.user)
@@ -12,6 +12,18 @@ feature 'user cancel donation' do
 
     expect(page).to have_content 'A doação foi cancelada'
     expect(page).to_not have_content donation.item.name
+  end
+
+  scenario 'when user send receipt' do
+    donation = create(:donation, status: 'waiting_approval')
+
+    login_as(donation.user)
+
+    visit confirmation_donations_path
+
+    expect(page).to_not have_link(
+      'Cancelar doação', href: cancel_donation_path(donation)
+    )
   end
 
   scenario 'correct amount item of canceled donation' do

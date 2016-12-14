@@ -3,8 +3,6 @@ require 'rails_helper'
 feature 'user see donations' do
   scenario 'when logged in' do
     donation = create(:donation, image: nil, status: 'pending_receipt')
-    another_user = create(:user, email: 'outro@email.com')
-    another_donation = create(:donation, user: another_user)
 
     login_as(donation.user)
 
@@ -16,7 +14,9 @@ feature 'user see donations' do
     expect(page).to have_link(
       'Enviar comprovante', href: edit_receipt_donation_path(donation)
     )
-    expect(page).not_to have_content another_donation.item.name
+    expect(page).to have_link(
+      'Cancelar doação', href: cancel_donation_path(donation)
+    )
   end
 
   scenario 'when not logged in' do
