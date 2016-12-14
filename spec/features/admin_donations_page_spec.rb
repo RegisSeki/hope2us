@@ -18,7 +18,7 @@ feature 'admin donations page' do
     donations.each do |donation|
       expect(page).to have_content donation.item.name
       expect(page).to have_content donation.amount
-      expect(page).to have_content 'Aguardando recibo'
+      expect(page).to have_content I18n.t('donation_status.pending_receipt')
     end
   end
 
@@ -34,7 +34,7 @@ feature 'admin donations page' do
 
     expect(page).to have_content donation.item.name
     expect(page).to have_content donation.amount
-    expect(page).to have_content 'Aguardando recibo'
+    expect(page).to have_content I18n.t('donation_status.pending_receipt')
   end
 
   scenario 'donations with receipt and not approved' do
@@ -50,7 +50,7 @@ feature 'admin donations page' do
 
     expect(page).to have_content donation.item.name
     expect(page).to have_content donation.amount
-    expect(page).to have_content 'Aguardando aprovação'
+    expect(page).to have_content I18n.t('donation_status.waiting_approval')
   end
 
   scenario 'donations aproved and not confirmed' do
@@ -66,7 +66,7 @@ feature 'admin donations page' do
 
     expect(page).to have_content donation.item.name
     expect(page).to have_content donation.amount
-    expect(page).to have_content 'Aprovado'
+    expect(page).to have_content I18n.t('donation_status.approved')
   end
 
   scenario 'donations confirmed' do
@@ -82,6 +82,6 @@ feature 'admin donations page' do
 
     expect(page).to have_content donation.item.name
     expect(page).to have_content donation.amount
-    expect(page).to have_content 'Confirmado'
+    expect(page).to have_content I18n.t('donation_status.confirmed')
   end
 end

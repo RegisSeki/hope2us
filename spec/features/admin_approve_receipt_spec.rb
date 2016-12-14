@@ -26,6 +26,6 @@ feature 'Admin approve donation receipt' do
 
     click_on 'Aprovar'
 
-    expect(page).to have_content 'Aprovado'
+    expect(page).to have_content I18n.t('donation_status.approved')
   end
 end

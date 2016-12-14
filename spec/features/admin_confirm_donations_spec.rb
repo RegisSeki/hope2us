@@ -11,6 +11,6 @@ feature 'admin confirm donations' do
 
     click_on 'Confirmar doação'
 
-    expect(page).to have_content 'Confirmado'
+    expect(page).to have_content I18n.t('donation_status.confirmed')
   end
 end
