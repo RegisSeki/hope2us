@@ -1,5 +1,6 @@
 <div id="confirmation-body" class="page">
-  <h1>Seja bem vindo Admin :)</h1>
+  <h1>Doações</h1>
+
   <div class="panel panel-default">
     <div class="panel-heading">
       Lista de doações:
@@ -12,9 +13,9 @@
           <th>Item</th>
           <th>Quantidade</th>
           <th>Status</th>
-          <th></th>
         </tr>
       </thead>
+
       <tbody>
       <% @donations.each do |donation| %>
         <tr>
@@ -32,7 +33,7 @@
           <% if donation.approved? %>
             <td>
               <%= link_to 'Confirmar doação',
-              confirm_admin_donation_path(donation.id), method: :post, 
+              confirm_admin_donation_path(donation.id), method: :post,
               class: 'btn btn-primary' %>
             </td>
           <% end %>
@@ -41,6 +42,7 @@
       </tbody>
     </table>
   </div>
+
   <% if flash[:errors] %>
     <div class="alert alert-info alert-dismissible" role="alert">
       <% flash[:errors].each do |error| %>
@@ -48,6 +50,7 @@
       <% end %>
     </div>
   <% end %>
+
   <% if flash[:warnings] %>
     <div class="alert alert-warning alert-dismissible" role="alert">
       <% flash[:warnings].each do |warning| %>
