@@ -4,7 +4,9 @@ feature 'admin donations page' do
   scenario 'donations list' do
     user = create(:user)
     admin_user = create(:admin_user)
-    donations = create_list(:donation, 3, user: user, image: nil, status: 'pending_receipt')
+    donations = create_list(
+      :donation, 3, user: user, image: nil, status: 'pending_receipt'
+    )
 
     login_as(admin_user, scope: :admin_user)
 
