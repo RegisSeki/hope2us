@@ -33,6 +33,44 @@ describe DonationBuilderService do
     end
   end
 
+  context 'email already exist' do
+    let!(:user) { create(
+      :user,
+      name: 'Usuário',
+      phone: '1234-1234',
+      email: 'usuario@email.com'
+    ) }
+    let!(:item_one) { create(:item, amount: 5) }
+    let!(:item_two) { create(:item, amount: 3) }
+    let!(:args) do
+      {
+        params: {
+          items: {
+            item_one.id => '1',
+            item_two.id => '1'
+          },
+          user: {
+            name: user.name,
+            phone: user.phone,
+            email: user.email
+          }
+        },
+        current_user: nil
+      }
+    end
+    subject { described_class.new(args).builder }
+
+    it 'should return info of user exist' do
+      expect(subject[:user].email).to eq(user.email)
+      expect(subject[:user].phone).to eq(user.phone)
+      expect(subject[:user].name).to eq(user.name)
+    end
+
+    it 'should return amount of donations corrected' do
+      expect(subject[:donations].size).to eq(2)
+    end
+  end
+
   context 'empty user params' do
     let!(:item_one) { create(:item, amount: 5) }
     let!(:item_two) { create(:item, amount: 3) }

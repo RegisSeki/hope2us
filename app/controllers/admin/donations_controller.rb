@@ -27,10 +27,6 @@ module Admin
 
     private
 
-    def donation_admin_params
-      params.permit(:id, :status)
-    end
-
     def update_donation_item
       item = @donation.item
       item.update(
