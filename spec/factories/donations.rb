@@ -4,6 +4,9 @@ FactoryGirl.define do
     user
     amount 1
     status 'pending_receipt'
-    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'images', 'forninho.jpg')) }
+    image do
+      Rack::Test::UploadedFile
+        .new(File.join(Rails.root, 'spec', 'support', 'images', 'forninho.jpg'))
+    end
   end
 end

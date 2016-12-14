@@ -4,4 +4,8 @@
 <h3>Comprovante: </h3>
 <p><%= image_tag(@donation.image) %></p>
 
-<%= link_to 'Aprovar', approve_admin_donation_path(@donation.id), method: :post, class: 'btn btn-default' %>
+<% if @donation.approved? %>
+  <%= link_to 'Voltar', admin_donations_path, class: 'btn btn-default' %>
+<% else %>
+  <%= link_to 'Aprovar', approve_admin_donation_path(@donation.id), method: :post, class: 'btn btn-default' %>
+<% end %>

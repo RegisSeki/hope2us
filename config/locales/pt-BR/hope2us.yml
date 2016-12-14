@@ -1,0 +1,7 @@
+pt-BR:
+  donation_status:
+    pending_receipt: Aguardando Recibo
+    waiting_approval: Aguardando Aprovação
+    approved: Aprovado
+    confirmed: Confirmado
+    canceled: Cancelado
