@@ -9,9 +9,9 @@
         <tr>
           <th>#</th>
           <th>Item</th>
+          <th>Qt disponível</th>
           <th>Qt reservada</th>
           <th>Qt confirmada</th>
-          <th>Qt disponível</th>
         </tr>
       </thead>
       <tbody>
@@ -19,26 +19,12 @@
         <tr>
           <th><%= item.id %></th>
           <td><%= item.name %></td>
+          <td><%= item.amount %></td>
           <td><%= item.reserved %></td>
           <td><%= item.confirmed %></td>
-          <td><%= item.amount %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
   </div>
-  <% if flash[:errors] %>
-    <div class="alert alert-info alert-dismissible" role="alert">
-      <% flash[:errors].each do |error| %>
-        <p><%= error %></p>
-      <% end %>
-    </div>
-  <% end %>
-  <% if flash[:warnings] %>
-    <div class="alert alert-warning alert-dismissible" role="alert">
-      <% flash[:warnings].each do |warning| %>
-        <p><%= warning %></p>
-      <% end %>
-    </div>
-  <% end %>
-  </div>
+</div>

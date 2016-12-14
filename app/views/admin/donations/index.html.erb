@@ -19,7 +19,7 @@
 
       <tbody>
       <% @donations.each do |donation| %>
-        <tr>
+        <tr class="<%= 'danger' if donation.canceled? %>">
           <th><%= donation.id %></th>
           <td><%= donation.item.name %></td>
           <td><%= donation.amount %></td>

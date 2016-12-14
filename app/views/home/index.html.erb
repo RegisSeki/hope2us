@@ -13,7 +13,9 @@
         ele é parte da nossa comunidade.
       </p>
 
-      <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-success' %>
+      <%= link_to 'Faça sua doação',
+          new_donation_path,
+          class: 'btn btn-success' unless admin_user_signed_in? %>
     </div>
   </div>
 
@@ -34,7 +36,9 @@
             <span><%= donation.item.total_amount %></span>
           </p>
 
-          <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-success' %>
+          <%= link_to 'Faça sua doação',
+              new_donation_path,
+              class: 'btn btn-success' unless admin_user_signed_in? %>
         </div>
       <% end %>
     </div>

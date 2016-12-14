@@ -55,7 +55,7 @@
     </table>
   </div>
 
-  <% if flash[:errors] %>
+  <% unless flash[:errors].blank? %>
     <div class="alert alert-info alert-dismissible" role="alert">
       <% flash[:errors].each do |error| %>
         <p><%= error %></p>
@@ -63,7 +63,7 @@
     </div>
   <% end %>
 
-  <% if flash[:warnings] %>
+  <% unless flash[:warnings].blank? %>
     <div class="alert alert-warning alert-dismissible" role="alert">
       <% flash[:warnings].each do |warning| %>
         <p><%= warning %></p>
