@@ -5,13 +5,15 @@
     <%= image_tag('home/peace_building.jpg') %>
 
     <div class="content">
-      <h2>Faça parte dessa história</h2>
+      <h2>A Hope2us necessita da sua ajuda</h2>
 
       <p>
-        Saiba como fazer doações e quais itens estão disponíveis
+        Com alguns cliques você pode mudar nossa história.
+        Nos ajude a manter e ampliar nosso espaço,
+        ele é parte da nossa comunidade.
       </p>
 
-      <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-primary' %>
+      <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-success' %>
     </div>
   </div>
 
@@ -32,7 +34,7 @@
             <span><%= donation.item.total_amount %></span>
           </p>
 
-          <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-primary' %>
+          <%= link_to 'Faça sua doação', new_donation_path, class: 'btn btn-success' %>
         </div>
       <% end %>
     </div>

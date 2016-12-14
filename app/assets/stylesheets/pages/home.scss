@@ -13,12 +13,20 @@
       padding: 0 16px;
 
       h2{
+        margin: 24px 0;
         color: $orange;
         font-weight: bold;
       }
 
       p{
         font-size: 16px;
+        line-height: 25px;
+      }
+
+      a{
+        width: 128px;
+        display: block;
+        margin: 40px auto 0 auto;
       }
     }
   }
