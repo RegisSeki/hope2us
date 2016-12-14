@@ -1,0 +1,11 @@
+<nav class="clearfix">
+  <ul class="left">
+    <li><%= link_to 'Doações', admin_donations_path %></li>
+    <li><%= link_to 'Itens', admin_items_path %></li>
+  </ul>
+
+  <ul class="right">
+    <li><%= "Olá, #{current_admin_user.email}" %></li>
+    <li><%= link_to 'Sair', destroy_admin_user_session_path, method: :delete %></li>
+  </ul>
+</nav>

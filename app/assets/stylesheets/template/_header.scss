@@ -5,9 +5,9 @@ header#master{
 
   nav{
     width: 1024px;
+    margin: 0 auto;
 
     ul{
-      float: right;
       line-height: 80px;
       margin-bottom: 0;
 
@@ -16,6 +16,9 @@ header#master{
         font-size: 15px;
         margin: 0 8px;
       }
+
+      &.left{ float: left; }
+      &.right{ float: right; }
     }
   }
 }

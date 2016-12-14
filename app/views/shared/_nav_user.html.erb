@@ -1,0 +1,11 @@
+<nav class="clearfix">
+  <ul class="left">
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Minhas Doações', confirmation_donations_path %></li>
+  </ul>
+
+  <ul class="right">
+    <li><%= "Olá, #{current_user.name || current_user.email}" %></li>
+    <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
+  </ul>
+</nav>

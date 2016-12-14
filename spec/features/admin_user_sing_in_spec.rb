@@ -6,7 +6,7 @@ feature 'admin user sign in'	do
 
     visit root_path
 
-    click_on 'Admin'
+    click_on 'Painel Administrativo'
 
     fill_in 'Email', with: admin_user.email
     fill_in 'Senha', with: admin_user.password
