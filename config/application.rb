@@ -19,5 +19,15 @@ module Hope2us
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :"pt-BR"
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'example.com',
+      user_name:            'contato.hope2us@gmail.com',
+      password:             'Campus1293',
+      authentication:       'plain',
+      enable_starttls_auto: true  }
   end
 end
